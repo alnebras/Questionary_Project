@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuestionaryProject.Data.Data.Models;
+using QuestionaryProject.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,30 +13,30 @@ namespace QuestionaryProject.Data.Data
         public static void Seed(this ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Questions>().HasData(
+            modelBuilder.Entity<Question>().HasData(
                 // Q1
-                new Questions { QuestionId = 1, QuestionName = "What is an operating system?" },
+                new Question { QuestionId = 1, QuestionName = "What is an operating system?" },
                 // Q2
-                new Questions { QuestionId = 2, QuestionName = "To access the services of operating system, the interface is provided by the ___________" },
+                new Question { QuestionId = 2, QuestionName = "To access the services of operating system, the interface is provided by the ___________" },
                 // Q3
-                new Questions { QuestionId = 3, QuestionName = "Which one of the following is not true?" }
+                new Question { QuestionId = 3, QuestionName = "Which one of the following is not true?" }
                 );
-            modelBuilder.Entity<Answers>().HasData(
+            modelBuilder.Entity<Answer>().HasData(
                 // Q1
-                new Answers { AnswerId = 1, AnswerName = "collection of programs that manages hardware resources" },
-                new Answers { AnswerId = 2, AnswerName = "system service provider to the application programs" },
-                new Answers { AnswerId = 3, AnswerName = "interface between the hardware and application programs" },
-                new Answers { AnswerId = 4, AnswerName = "all of the mentioned" },
+                new Answer { AnswerId = 1, AnswerName = "Collection of programs that manages hardware resources", QuestionId = 1 },
+                new Answer { AnswerId = 2, AnswerName = "System service provider to the application programs", QuestionId = 1 },
+                new Answer { AnswerId = 3, AnswerName = "Interface between the hardware and application programs", QuestionId = 1 },
+                new Answer { AnswerId = 4, AnswerName = "All of the mentioned", QuestionId = 1 },
                 // Q2
-                new Answers { AnswerId = 5, AnswerName = "System calls" },
-                new Answers { AnswerId = 6, AnswerName = "API" },
-                new Answers { AnswerId = 7, AnswerName = "Library" },
-                new Answers { AnswerId = 8, AnswerName = "Assembly instructions" },
+                new Answer { AnswerId = 5, AnswerName = "System calls", QuestionId = 2 },
+                new Answer { AnswerId = 6, AnswerName = "API", QuestionId = 2 },
+                new Answer { AnswerId = 7, AnswerName = "Library", QuestionId = 2 },
+                new Answer { AnswerId = 8, AnswerName = "Assembly instructions", QuestionId = 2 },
                 // Q3
-                new Answers { AnswerId = 9, AnswerName = "kernel is the program that constitutes the central core of the operating system" },
-                new Answers { AnswerId = 10, AnswerName = "kernel is the first part of operating system to load into memory during booting" },
-                new Answers { AnswerId = 11, AnswerName = "kernel is made of various modules which can not be loaded in running operating system" },
-                new Answers { AnswerId = 12, AnswerName = "kernel remains in the memory during the entire computer session" }
+                new Answer { AnswerId = 9, AnswerName = "kernel is the program that constitutes the central core of the operating system", QuestionId = 3 },
+                new Answer { AnswerId = 10, AnswerName = "kernel is the first part of operating system to load into memory during booting", QuestionId = 3 },
+                new Answer { AnswerId = 11, AnswerName = "kernel is made of various modules which can not be loaded in running operating system", QuestionId = 3 },
+                new Answer { AnswerId = 12, AnswerName = "kernel remains in the memory during the entire computer session", QuestionId = 3 }
                 );
 
         }
