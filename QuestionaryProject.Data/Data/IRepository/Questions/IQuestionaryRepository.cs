@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuestionaryProject.Data.IRepository.Questions
+namespace QuestionaryProject.Data.IRepository
 {
-    public interface IQuestionsRepository
+    public interface IQuestionaryRepository
     {
         Task<List<QuestionsDTO>> GetAllQuestionsAsync();
         Task<UserAnswersSelectionDTO> AddAsync(UserAnswersSelectionDTO model);

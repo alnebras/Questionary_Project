@@ -2,7 +2,7 @@
 using QuestionaryProject.Data.Data.Models;
 using QuestionaryProject.Data.Models;
 
-namespace QuestionaryProject.Data.Data
+namespace QuestionaryProject.Data
 {
     public class QuestionaryContext : DbContext
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuestionaryProject.Data.Data
+namespace QuestionaryProject.Data
 {
     public static class DbInitializer
     {

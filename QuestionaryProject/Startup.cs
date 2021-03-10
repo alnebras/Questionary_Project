@@ -1,15 +1,14 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QuestionaryProject.AutoMapperConfigurations;
-using QuestionaryProject.Data.Data;
-using QuestionaryProject.Data.Data.Repository;
-using QuestionaryProject.Data.IRepository.Questions;
+using QuestionaryProject.Data;
+using QuestionaryProject.Data.IRepository;
+using QuestionaryProject.Data.Repository;
 
 namespace QuestionaryProject
 {
@@ -25,7 +24,7 @@ namespace QuestionaryProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IQuestionsRepository, QuestionsRepository>();
+            services.AddTransient<IQuestionaryRepository, QuestionaryRepository>();
 
             services.AddControllers();
             services.AddRazorPages();

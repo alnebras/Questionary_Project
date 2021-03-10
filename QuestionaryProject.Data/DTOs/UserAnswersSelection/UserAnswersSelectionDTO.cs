@@ -9,9 +9,7 @@ namespace QuestionaryProject.Data.DTOs.UserAnswersSelection
     {
         public string UserName { get; set; }
         public DateTime SubmissionDate { get; set; }
-
         public int QuestionId { get; set; }
-
         public List<UserAnswersDTO> UserAnswers { get; set; }
 
     }

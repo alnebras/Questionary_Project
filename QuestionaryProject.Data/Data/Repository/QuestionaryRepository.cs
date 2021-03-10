@@ -3,19 +3,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using QuestionaryProject.Data.IRepository.Questions;
 using QuestionaryProject.Data.DTOs.Questions;
 using QuestionaryProject.Data.DTOs.UserAnswersSelection;
+using QuestionaryProject.Data.IRepository;
 using QuestionaryProject.Data.Models;
 
-namespace QuestionaryProject.Data.Data.Repository
+namespace QuestionaryProject.Data.Repository
 {
-    public class QuestionsRepository : IQuestionsRepository
+    public class QuestionaryRepository : IQuestionaryRepository
     {
         private readonly QuestionaryContext _context;
         private readonly IMapper _mapper;
 
-        public QuestionsRepository(QuestionaryContext context, IMapper mapper)
+        public QuestionaryRepository(QuestionaryContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -35,8 +35,8 @@ namespace QuestionaryProject.Data.Data.Repository
         public async Task<List<QuestionsDTO>> GetAllQuestionsAsync()
         {
             var questions = await _context.Questions.Include(x => x.Answers)
-               .ToListAsync()
-               .ConfigureAwait(false);
+                               .ToListAsync()
+                               .ConfigureAwait(false);
             var questionsDto = _mapper.Map<List<QuestionsDTO>>(questions);
 
             return questionsDto;

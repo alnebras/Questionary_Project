@@ -10,12 +10,9 @@ namespace QuestionaryProject.Data.Data.Models
     {
         public string UserName { get; set; }
         public DateTime SubmissionDate { get; set; }
-
         public int QuestionId { get; set; }
-        //public Question Question { get; set; }
         public int AnswerId { get; set; }
         public Answer Answer { get; set; }
-
         public UserAnswersSelection UserAnswersSelection { get; set; }
 
     }
