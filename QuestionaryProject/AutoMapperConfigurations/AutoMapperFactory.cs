@@ -8,7 +8,7 @@ namespace QuestionaryProject.AutoMapperConfigurations
         {
             return new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<QuestionsProfile>();
+                cfg.AddProfile<AutoMapperProfile>();
             }).CreateMapper();
         }
     }

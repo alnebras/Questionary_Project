@@ -8,14 +8,18 @@ using QuestionaryProject.Data.Models;
 
 namespace QuestionaryProject.AutoMapperConfigurations
 {
-    public class QuestionsProfile: Profile
+    public class AutoMapperProfile: Profile
     {
-        public QuestionsProfile()
+        public AutoMapperProfile()
         {
             CreateMap<Question,QuestionsDTO>();
+            CreateMap<QuestionsDTO, Question>();
             CreateMap<Answer, AnswersDTO>();
+            CreateMap<AnswersDTO, Answer>();
             CreateMap<UserAnswer, UserAnswersDTO>();
+            CreateMap<UserAnswersDTO, UserAnswer>();
             CreateMap<UserAnswersSelection, UserAnswersSelectionDTO>();
+            CreateMap<UserAnswersSelectionDTO, UserAnswersSelection>();
         }
     }
 }

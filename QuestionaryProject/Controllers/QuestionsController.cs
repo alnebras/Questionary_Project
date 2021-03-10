@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuestionaryProject.Data.DTOs.Questions;
+using QuestionaryProject.Data.DTOs.UserAnswersSelection;
 using QuestionaryProject.Data.IRepository.Questions;
 using System.Threading.Tasks;
 
@@ -19,6 +20,16 @@ namespace QuestionaryProject.Controllers
         public async Task<ActionResult<QuestionsDTO>> GetAllQuestions()
         {
             var allQuestions = await _questionsRepository.GetAllQuestionsAsync();
+            if (allQuestions == null)
+                return NotFound();
+            return Ok(allQuestions);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<QuestionsDTO>> AddQuestionaryAsync([FromBody] 
+                                                        UserAnswersSelectionDTO userAnswersSelectionDTO)
+        {
+            var allQuestions = await _questionsRepository.AddAsync(userAnswersSelectionDTO);
             if (allQuestions == null)
                 return NotFound();
             return Ok(allQuestions);

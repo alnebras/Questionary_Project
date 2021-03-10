@@ -14,11 +14,9 @@ namespace QuestionaryProject.Data.DTOs.UserAnswers
         public int QuestionId { get; set; }
 
         public int AnswerId { get; set; }
-        public AnswersDTO Answer { get; set; }
+        //public AnswersDTO Answer { get; set; }
 
-        public QuestionsDTO QuestionsDTO { get; set; }
-
-        public UserAnswersSelectionDTO UserAnswersSelection { get; set; }
+        //public UserAnswersSelectionDTO UserAnswersSelection { get; set; }
 
 
     }

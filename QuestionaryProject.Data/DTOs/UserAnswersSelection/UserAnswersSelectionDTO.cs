@@ -12,7 +12,7 @@ namespace QuestionaryProject.Data.DTOs.UserAnswersSelection
 
         public int QuestionId { get; set; }
 
-        public List<UserAnswersDTO> UserAnswersDTO { get; set; }
+        public List<UserAnswersDTO> UserAnswers { get; set; }
 
     }
 }

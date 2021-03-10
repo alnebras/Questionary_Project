@@ -10,7 +10,7 @@ using QuestionaryProject.Data.Data;
 namespace QuestionaryProject.Data.Migrations
 {
     [DbContext(typeof(QuestionaryContext))]
-    [Migration("20210310095136_InitialMigration")]
+    [Migration("20210310120312_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,7 +82,7 @@ namespace QuestionaryProject.Data.Migrations
 
                     b.HasIndex("UserAnswersSelectionUserName", "UserAnswersSelectionSubmissionDate", "UserAnswersSelectionQuestionId");
 
-                    b.ToTable("UserAnswersSelection");
+                    b.ToTable("UserAsnswers");
                 });
 
             modelBuilder.Entity("QuestionaryProject.Data.Models.Answer", b =>
@@ -194,7 +194,7 @@ namespace QuestionaryProject.Data.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("UserAsnswers");
+                    b.ToTable("UserAnswersSelection");
                 });
 
             modelBuilder.Entity("QuestionaryProject.Data.Data.Models.UserAnswer", b =>

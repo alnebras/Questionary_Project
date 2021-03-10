@@ -10,7 +10,7 @@ namespace QuestionaryProject.Data.IRepository.Questions
     public interface IQuestionsRepository
     {
         Task<List<QuestionsDTO>> GetAllQuestionsAsync();
-        Task<List<UserAnswersSelectionDTO>> AddAsync();
+        Task<UserAnswersSelectionDTO> AddAsync(UserAnswersSelectionDTO model);
 
     }
 }

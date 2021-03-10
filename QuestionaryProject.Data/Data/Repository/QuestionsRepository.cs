@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using QuestionaryProject.Data.IRepository.Questions;
 using QuestionaryProject.Data.DTOs.Questions;
 using QuestionaryProject.Data.DTOs.UserAnswersSelection;
+using QuestionaryProject.Data.Models;
 
 namespace QuestionaryProject.Data.Data.Repository
 {
@@ -20,14 +21,20 @@ namespace QuestionaryProject.Data.Data.Repository
             _mapper = mapper;
         }
 
-        public Task<List<UserAnswersSelectionDTO>> AddAsync()
+        public async Task<UserAnswersSelectionDTO> AddAsync(UserAnswersSelectionDTO model)
         {
-            throw new System.NotImplementedException();
+            var userAnswerSelection = _mapper.Map<UserAnswersSelection>(model);
+
+            await _context.UserAnswersSelection.AddAsync(userAnswerSelection).ConfigureAwait(false);
+            await _context.SaveChangesAsync().ConfigureAwait(false);
+            var userAnswerSelectionDTO = _mapper.Map<UserAnswersSelectionDTO>(userAnswerSelection);
+
+            return userAnswerSelectionDTO;
         }
 
         public async Task<List<QuestionsDTO>> GetAllQuestionsAsync()
         {
-            var questions = await _context.Questions.Include(x =>x.Answers)
+            var questions = await _context.Questions.Include(x => x.Answers)
                .ToListAsync()
                .ConfigureAwait(false);
             var questionsDto = _mapper.Map<List<QuestionsDTO>>(questions);

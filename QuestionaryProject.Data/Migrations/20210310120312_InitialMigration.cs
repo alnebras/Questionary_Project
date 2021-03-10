@@ -41,7 +41,7 @@ namespace QuestionaryProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAsnswers",
+                name: "UserAnswersSelection",
                 columns: table => new
                 {
                     UserName = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -50,9 +50,9 @@ namespace QuestionaryProject.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAsnswers", x => new { x.UserName, x.SubmissionDate, x.QuestionId });
+                    table.PrimaryKey("PK_UserAnswersSelection", x => new { x.UserName, x.SubmissionDate, x.QuestionId });
                     table.ForeignKey(
-                        name: "FK_UserAsnswers_Questions_QuestionId",
+                        name: "FK_UserAnswersSelection_Questions_QuestionId",
                         column: x => x.QuestionId,
                         principalTable: "Questions",
                         principalColumn: "QuestionId",
@@ -60,7 +60,7 @@ namespace QuestionaryProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAnswersSelection",
+                name: "UserAsnswers",
                 columns: table => new
                 {
                     UserName = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -73,17 +73,17 @@ namespace QuestionaryProject.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAnswersSelection", x => new { x.UserName, x.SubmissionDate, x.QuestionId, x.AnswerId });
+                    table.PrimaryKey("PK_UserAsnswers", x => new { x.UserName, x.SubmissionDate, x.QuestionId, x.AnswerId });
                     table.ForeignKey(
-                        name: "FK_UserAnswersSelection_Answers_AnswerId",
+                        name: "FK_UserAsnswers_Answers_AnswerId",
                         column: x => x.AnswerId,
                         principalTable: "Answers",
                         principalColumn: "AnswerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserAnswersSelection_UserAsnswers_UserAnswersSelectionUserName_UserAnswersSelectionSubmissionDate_UserAnswersSelectionQuesti~",
+                        name: "FK_UserAsnswers_UserAnswersSelection_UserAnswersSelectionUserName_UserAnswersSelectionSubmissionDate_UserAnswersSelectionQuesti~",
                         columns: x => new { x.UserAnswersSelectionUserName, x.UserAnswersSelectionSubmissionDate, x.UserAnswersSelectionQuestionId },
-                        principalTable: "UserAsnswers",
+                        principalTable: "UserAnswersSelection",
                         principalColumns: new[] { "UserName", "SubmissionDate", "QuestionId" },
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -128,31 +128,31 @@ namespace QuestionaryProject.Data.Migrations
                 column: "QuestionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAnswersSelection_AnswerId",
+                name: "IX_UserAnswersSelection_QuestionId",
                 table: "UserAnswersSelection",
+                column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAsnswers_AnswerId",
+                table: "UserAsnswers",
                 column: "AnswerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAnswersSelection_UserAnswersSelectionUserName_UserAnswersSelectionSubmissionDate_UserAnswersSelectionQuestionId",
-                table: "UserAnswersSelection",
-                columns: new[] { "UserAnswersSelectionUserName", "UserAnswersSelectionSubmissionDate", "UserAnswersSelectionQuestionId" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserAsnswers_QuestionId",
+                name: "IX_UserAsnswers_UserAnswersSelectionUserName_UserAnswersSelectionSubmissionDate_UserAnswersSelectionQuestionId",
                 table: "UserAsnswers",
-                column: "QuestionId");
+                columns: new[] { "UserAnswersSelectionUserName", "UserAnswersSelectionSubmissionDate", "UserAnswersSelectionQuestionId" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserAnswersSelection");
+                name: "UserAsnswers");
 
             migrationBuilder.DropTable(
                 name: "Answers");
 
             migrationBuilder.DropTable(
-                name: "UserAsnswers");
+                name: "UserAnswersSelection");
 
             migrationBuilder.DropTable(
                 name: "Questions");

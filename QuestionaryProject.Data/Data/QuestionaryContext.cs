@@ -12,8 +12,8 @@ namespace QuestionaryProject.Data.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         //public DbSet<QuestionaryInformation> QuestionaryInformations { get; set; }
-        public DbSet<QuestionaryProject.Data.Models.UserAnswersSelection> UserAsnswers { get; set; }
-        public DbSet<Models.UserAnswer> UserAnswersSelection { get; set; }
+        public DbSet<UserAnswersSelection> UserAnswersSelection { get; set; }
+        public DbSet<UserAnswer> UserAsnswers  { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
