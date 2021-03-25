@@ -3,7 +3,6 @@ using QuestionaryProject.Data.Data.Models;
 using QuestionaryProject.Data.DTOs.Answers;
 using QuestionaryProject.Data.DTOs.Questions;
 using QuestionaryProject.Data.DTOs.UserAnswers;
-using QuestionaryProject.Data.DTOs.UserAnswersSelection;
 using QuestionaryProject.Data.Models;
 
 namespace QuestionaryProject.AutoMapperConfigurations
@@ -18,8 +17,7 @@ namespace QuestionaryProject.AutoMapperConfigurations
             CreateMap<AnswersDTO, Answer>();
             CreateMap<UserAnswer, UserAnswersDTO>();
             CreateMap<UserAnswersDTO, UserAnswer>();
-            CreateMap<UserAnswersSelection, UserAnswersSelectionDTO>();
-            CreateMap<UserAnswersSelectionDTO, UserAnswersSelection>();
+         
         }
     }
 }

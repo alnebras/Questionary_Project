@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using QuestionaryProject.Data.Data;
+using QuestionaryProject.Data;
 
 namespace QuestionaryProject.Data.Migrations
 {
@@ -53,32 +53,26 @@ namespace QuestionaryProject.Data.Migrations
 
             modelBuilder.Entity("QuestionaryProject.Data.Data.Models.UserAnswer", b =>
                 {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("SubmissionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
+                    b.Property<int>("UserAnswerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AnswerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserAnswersSelectionQuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UserAnswersSelectionSubmissionDate")
+                    b.Property<DateTime>("SubmissionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserAnswersSelectionUserName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserName", "SubmissionDate", "QuestionId", "AnswerId");
+                    b.HasKey("UserAnswerId");
 
                     b.HasIndex("AnswerId");
-
-                    b.HasIndex("UserAnswersSelectionUserName", "UserAnswersSelectionSubmissionDate", "UserAnswersSelectionQuestionId");
 
                     b.ToTable("UserAsnswers");
                 });
@@ -177,24 +171,6 @@ namespace QuestionaryProject.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("QuestionaryProject.Data.Models.UserAnswersSelection", b =>
-                {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("SubmissionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserName", "SubmissionDate", "QuestionId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("UserAnswersSelection");
-                });
-
             modelBuilder.Entity("QuestionaryProject.Data.Data.Models.UserAnswer", b =>
                 {
                     b.HasOne("QuestionaryProject.Data.Models.Answer", "Answer")
@@ -203,13 +179,7 @@ namespace QuestionaryProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("QuestionaryProject.Data.Models.UserAnswersSelection", "UserAnswersSelection")
-                        .WithMany("UserAnswers")
-                        .HasForeignKey("UserAnswersSelectionUserName", "UserAnswersSelectionSubmissionDate", "UserAnswersSelectionQuestionId");
-
                     b.Navigation("Answer");
-
-                    b.Navigation("UserAnswersSelection");
                 });
 
             modelBuilder.Entity("QuestionaryProject.Data.Models.Answer", b =>
@@ -223,28 +193,12 @@ namespace QuestionaryProject.Data.Migrations
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("QuestionaryProject.Data.Models.UserAnswersSelection", b =>
-                {
-                    b.HasOne("QuestionaryProject.Data.Data.Models.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-                });
-
             modelBuilder.Entity("QuestionaryProject.Data.Data.Models.Question", b =>
                 {
                     b.Navigation("Answers");
                 });
 
             modelBuilder.Entity("QuestionaryProject.Data.Models.Answer", b =>
-                {
-                    b.Navigation("UserAnswers");
-                });
-
-            modelBuilder.Entity("QuestionaryProject.Data.Models.UserAnswersSelection", b =>
                 {
                     b.Navigation("UserAnswers");
                 });

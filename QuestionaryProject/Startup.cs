@@ -24,8 +24,17 @@ namespace QuestionaryProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IQuestionaryRepository, QuestionaryRepository>();
 
+            services.AddTransient<IQuestionaryRepository, QuestionaryRepository>();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://localhost:56866"));
+            });
             services.AddControllers();
             services.AddRazorPages();
 
@@ -43,6 +52,10 @@ namespace QuestionaryProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
+
+            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(options => options.WithOrigins("http://localhost:56866"));
+
             //app.UseSwagger();
             if (env.IsDevelopment())
             {
@@ -50,7 +63,6 @@ namespace QuestionaryProject
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -67,11 +79,6 @@ namespace QuestionaryProject
 
             app.UseMvcWithDefaultRoute();
 
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute("Complaints","{controller}/{action}/{id?}");
-            //});
         }
     }
 }
